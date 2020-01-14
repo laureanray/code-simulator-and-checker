@@ -6,9 +6,13 @@
     <color name="colorAccent">#0F316B</color>
     <color name="gray"> #e7e7e7 </color>
     <color name="grayDark">#212121</color>
+    <color name="grayLighter">#3C3C3C</color>
+    <color name="grayLightest">#747474</color>
     <color name="white"> #fafafa </color>
     <color name="danger"> #B00020 </color>
     <color name="dangerDarker">#7A051B</color>
     <color name="dangerDisabled">#F06A81</color>
+    <color name="whiteDisabled">#D3D3D3</color>
+    <color name="dirtyWhite"> #e7e7e7 </color>
 
 </resources>

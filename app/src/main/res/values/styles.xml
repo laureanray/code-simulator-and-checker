@@ -27,6 +27,13 @@
         <item name="android:textAlignment">textStart</item>
     </style>
 
+    <style name="FontBodySm">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:textColor">@color/grayDark</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
 
     <style name="BtnPrimary">
         <item name="android:background">@drawable/btn_primary</item>
@@ -42,12 +49,21 @@
         <item name="android:textSize">@dimen/button_fs</item>
     </style>
 
+
+    <style name="BtnLight">`
+        <item name="android:background">@drawable/btn_light</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:textColor">@color/grayDark</item>
+        <item name="android:textSize">@dimen/button_fs</item>
+    </style>
+
     <style name="TextInput">
         <item name="android:textSize">@dimen/edit_text_fs</item>
         <item name="android:background">@drawable/edit_text</item>
         <item name="android:padding">@dimen/padding_top</item>
         <item name="android:fontFamily">@font/semibold</item>
         <item name="android:textColor">@color/grayDark</item>
+        <item name="android:textColorHint"> @color/grayLightest </item>
     </style>
 
     <style name="FragmentStyle">
@@ -60,7 +76,5 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 </resources>

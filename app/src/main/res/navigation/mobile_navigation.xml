@@ -9,25 +9,25 @@
         android:id="@+id/navigation_home"
         android:name="com.laureanray.codesimulatorandchecker.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/home_fragment" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.laureanray.codesimulatorandchecker.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/dashboard_fragment" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.laureanray.codesimulatorandchecker.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/notifications_fragment" />
 
     <fragment
         android:id="@+id/navigation_account"
         android:name="com.laureanray.codesimulatorandchecker.ui.account.AccountFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/account_fragment" />
 
 
 

@@ -4,11 +4,12 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_account"> Account </string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Log in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in">Log in</string>
+    <string name="action_register"> Register </string>
+    <string name="action_sign_in_short">Log in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
@@ -17,4 +18,13 @@
     <string name="logout"> Logout </string>
     <string name="prompt_username"> Username </string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="login_prompt"> Login using your username </string>
+    <string name="register_prompt"> Please fill all the fields </string>
+    <string name="firstname_prompt"> First Name </string>
+    <string name="lastname_prompt"> Last Name </string>
+    <string name="email_prompt"> Email </string>
+    <string name="cpassword_prompt"> Confirm Password </string>
+    <string name="terms"> By clicking register you are agreeing to our terms. </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

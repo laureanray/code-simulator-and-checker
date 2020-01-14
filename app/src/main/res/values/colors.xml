@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0D9FFF</color>
+    <color name="colorPrimaryDisabled">#86CFFF</color>
+    <color name="colorPrimaryDark">#1C85D5</color>
+    <color name="colorAccent">#0F316B</color>
+    <color name="gray"> #e7e7e7 </color>
+    <color name="grayDark">#212121</color>
+    <color name="white"> #fafafa </color>
+    <color name="danger"> #B00020 </color>
+    <color name="dangerDarker">#7A051B</color>
+    <color name="dangerDisabled">#F06A81</color>
+
+</resources>

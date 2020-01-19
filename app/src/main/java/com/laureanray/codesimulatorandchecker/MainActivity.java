@@ -7,25 +7,31 @@ import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.laureanray.codesimulatorandchecker.app.SharedPreferencesManager;
+import com.laureanray.codesimulatorandchecker.data.model.Student;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity  {
+    private static Student student = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        // Get student object from sharedpref
         Log.d(getLocalClassName(),"onCreate");
 
         if(SharedPreferencesManager.getIsLoggedInValue(getApplicationContext())) {
             setContentView(R.layout.activity_main);
+
+
+            if(SharedPreferencesManager.getIsStudentValue(getApplicationContext())){
+                // if student then get the student object
+                student = SharedPreferencesManager.getStudentValue(getApplicationContext());
+            }
 
             // Navigation
             BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -39,5 +45,7 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
-
+    public static Student getStudent() {
+        return student;
+    }
 }

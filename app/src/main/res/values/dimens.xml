@@ -10,4 +10,7 @@
     <dimen name="edit_text_fs">18sp</dimen>
     <dimen name="button_fs">15sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="avatar_dimen"> 90dp </dimen>
+    <dimen name="courses_height"> 125dp </dimen>
+    <dimen name="courses_thumb_height"> 120dp </dimen>
 </resources>

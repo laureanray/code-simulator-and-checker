@@ -18,6 +18,7 @@ public class SharedPreferencesManager {
         return context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
     }
 
+
     public static boolean getIsLoggedInValue(Context context) {
         return getSharedPreferences(context).getBoolean(IS_LOGGED_IN , false);
     }

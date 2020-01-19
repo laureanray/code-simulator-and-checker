@@ -20,12 +20,21 @@
         <item name="android:textAlignment">textStart</item>
     </style>
 
-    <style name="FontBody">
-        <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">@font/regular</item>
-        <item name="android:textColor">@color/grayDark</item>
-        <item name="android:textAlignment">textStart</item>
+
+    <style name="FontHeadingLight">
+        <item name="android:textSize"> 30sp </item>
+        <item name="android:fontFamily">@font/regular </item>
+        <item name="android:textColor">@color/grayDark </item>
+        <item name="android:textAlignment"> textStart </item>
     </style>
+
+    <style name="FontBody">
+        <item name="android:textSize"> 18sp </item>
+        <item name="android:fontFamily"> @font/regular </item>
+        <item name="android:textColor"> @color/grayDark </item>
+        <item name="android:textAlignment"> textStart </item>
+    </style>
+
 
     <style name="FontBodySm">
         <item name="android:textSize">16sp</item>
@@ -34,6 +43,12 @@
         <item name="android:textAlignment">textStart</item>
     </style>
 
+    <style name="FontHeadingSm">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:textColor">@color/grayDark</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
 
     <style name="BtnPrimary">
         <item name="android:background">@drawable/btn_primary</item>
@@ -65,6 +80,7 @@
         <item name="android:textColor">@color/grayDark</item>
         <item name="android:textColorHint"> @color/grayLightest </item>
     </style>
+
 
     <style name="FragmentStyle">
         <item name="android:paddingBottom">50sp</item>

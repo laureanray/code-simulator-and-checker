@@ -45,10 +45,11 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:text="@string/placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/run_button" />
+        app:layout_constraintTop_toBottomOf="@+id/play_run_btn" />
 
     <TextView
         android:id="@+id/textView15"
@@ -61,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/source_code" />
 
     <Button
-        android:id="@+id/run_button"
+        android:id="@+id/play_run_btn"
         style="@style/BtnPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/result"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
@@ -82,4 +83,13 @@
         app:layout_constraintEnd_toEndOf="@+id/source_code"
         app:layout_constraintStart_toStartOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/compile_result"
+        style="@style/FontBodySm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="@+id/textView15" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.laureanray.codesimulatorandchecker.ui.dashboard;
+package com.laureanray.codesimulatorandchecker.ui.courses;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,15 +11,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.laureanray.codesimulatorandchecker.R;
 
-public class DashboardFragment extends Fragment {
+public class CoursesFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private CoursesViewModel coursesViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.dashboard_fragment, container, false);
+        coursesViewModel =
+                ViewModelProviders.of(this).get(CoursesViewModel.class);
+        View root = inflater.inflate(R.layout.courses_fragment, container, false);
         return root;
     }
 }

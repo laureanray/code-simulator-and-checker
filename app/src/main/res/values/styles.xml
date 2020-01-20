@@ -50,6 +50,13 @@
         <item name="android:textAlignment">textStart</item>
     </style>
 
+    <style name="FontHeadingXsm">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:textColor">@color/grayDark</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
     <style name="BtnPrimary">
         <item name="android:background">@drawable/btn_primary</item>
         <item name="android:fontFamily">@font/semibold</item>
@@ -81,6 +88,19 @@
         <item name="android:textColorHint"> @color/grayLightest </item>
     </style>
 
+
+    <style name="CourseThumb">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:textColor">@color/grayDark</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textAllCaps"> false </item>
+        <item name="android:gravity"> bottom</item>
+    </style>
+
+    <style name="ButtonIcon">
+        <item name="android:background"> @drawable/btn_circular </item>
+    </style>
 
     <style name="FragmentStyle">
         <item name="android:paddingBottom">50sp</item>

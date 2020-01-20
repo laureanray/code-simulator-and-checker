@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.laureanray.codesimulatorandchecker.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/dashboard_fragment" />
+        android:name="com.laureanray.codesimulatorandchecker.ui.courses.CoursesFragment"
+        android:label="@string/title_courses"
+        tools:layout="@layout/courses_fragment" />
 
     <fragment
         android:id="@+id/navigation_notifications"

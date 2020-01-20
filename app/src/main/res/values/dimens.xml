@@ -13,4 +13,8 @@
     <dimen name="avatar_dimen"> 90dp </dimen>
     <dimen name="courses_height"> 125dp </dimen>
     <dimen name="courses_thumb_height"> 120dp </dimen>
+    <dimen name="courses_thumb_width"> 100dp </dimen>
+    <dimen name="icons"> 60dp </dimen>
+    <dimen name="icon_radius"> 40dp </dimen>
+    <dimen name="icon_text_width"> 70dp </dimen>
 </resources>

@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/et_username"
+        android:id="@+id/et_r_un"
         style="@style/TextInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -56,8 +56,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/et_username"
-        app:layout_constraintTop_toBottomOf="@+id/et_username" />
+        app:layout_constraintStart_toStartOf="@+id/et_r_un"
+        app:layout_constraintTop_toBottomOf="@+id/et_r_un" />
 
     <Button
         android:id="@+id/login_btn"

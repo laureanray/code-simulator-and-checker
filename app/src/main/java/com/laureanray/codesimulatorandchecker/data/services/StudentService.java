@@ -16,4 +16,6 @@ public interface StudentService {
     @POST("/api/v1/students/login")
     Call<Student> login(@Body Login login);
 
+    @POST("/api/v1/students/register")
+    Call<Student> register(@Body Student student);
 }

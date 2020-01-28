@@ -2,7 +2,6 @@ package com.laureanray.codesimulatorandchecker.ui.root;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,8 +23,6 @@ import com.laureanray.codesimulatorandchecker.app.SharedPreferencesManager;
 import com.laureanray.codesimulatorandchecker.data.model.Login;
 import com.laureanray.codesimulatorandchecker.data.model.Student;
 import com.laureanray.codesimulatorandchecker.data.services.StudentService;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,7 +81,7 @@ public class LoginFragment extends Fragment {
         loginButton = root.findViewById(R.id.login_btn);
         loginButton.setEnabled(false);
 
-        username = root.findViewById(R.id.et_username);
+        username = root.findViewById(R.id.et_r_un);
         password = root.findViewById(R.id.et_password);
 
         username.addTextChangedListener(loginTextWatcher);

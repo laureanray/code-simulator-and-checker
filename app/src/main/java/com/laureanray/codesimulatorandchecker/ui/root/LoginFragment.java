@@ -1,11 +1,13 @@
 package com.laureanray.codesimulatorandchecker.ui.root;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,10 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.laureanray.codesimulatorandchecker.MainActivity;
 import com.laureanray.codesimulatorandchecker.R;
 import com.laureanray.codesimulatorandchecker.app.RetrofitClientInstance;
 import com.laureanray.codesimulatorandchecker.app.SharedPreferencesManager;
+import com.laureanray.codesimulatorandchecker.app.Util;
 import com.laureanray.codesimulatorandchecker.data.model.Login;
 import com.laureanray.codesimulatorandchecker.data.model.Student;
 import com.laureanray.codesimulatorandchecker.data.services.StudentService;
@@ -87,56 +91,71 @@ public class LoginFragment extends Fragment {
         username.addTextChangedListener(loginTextWatcher);
         password.addTextChangedListener(loginTextWatcher);
 
-        loginButton.setOnClickListener(view -> {
-            // Start loading as soon as clicked then dismiss when callback
-
-            Login login = new Login(username.getText().toString(), password.getText().toString());
-
-            ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Logging you in...");
-            progressDialog.setMessage("Please wait");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-
-
-
-            Call<Student> call = studentService.login(login);
-            call.enqueue(new Callback<Student>() {
-                @Override
-                public void onResponse(Call<Student> call, Response<Student> response) {
-                    Log.d("LOGIN_FRAGMENT", response.message());
-
-                    if(response.raw().code() == 200){
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(intent);
-
-                        // Set the login value
-                        SharedPreferencesManager.setIsLoggedInValue(getContext(), true);
-                        SharedPreferencesManager.setStudentValue(getContext(), response.body());
-                        SharedPreferencesManager.setIsStudentValue(getContext(), true);
-                        getActivity().finish();
-
-
-                    } else if(response.raw().code() == 400) {
-                        password.setError("Incorrect password");
-                    } else {
-                        username.setError("User doesn't exist");
-                    }
-
-                    progressDialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<Student> call, Throwable t) {
-                    Log.d("LOGIN_FRAGMENT", call.toString());
-                    t.printStackTrace();
-                }
-            });
-
-
-        });
+        // Event listeners
+        loginButton.setOnClickListener(this::onLoginClicked);
         return root;
     }
 
+    private void onLoginClicked(View view) {
+        // Hide keyboard
 
+        Util.hideKeyboard(getActivity());
+
+        Login login = new Login(username.getText().toString(), password.getText().toString());
+
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Logging you in...");
+        progressDialog.setMessage("Please wait");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        Handler progressDialogHandler = new Handler();
+
+        Runnable progressRunnable = new Runnable() {
+            @Override
+            public void run() {
+
+                Snackbar.make(view, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                progressDialog.cancel();
+            }
+        };
+
+
+        progressDialogHandler.postDelayed(progressRunnable, 3000);
+
+        Call<Student> call = studentService.login(login);
+        call.enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                Log.d("LOGIN_FRAGMENT", response.message());
+
+                if (response.raw().code() == 200) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+
+                    progressDialogHandler.removeCallbacks(progressRunnable);
+
+                    // Set the login value
+                    SharedPreferencesManager.setIsLoggedInValue(getContext(), true);
+                    SharedPreferencesManager.setStudentValue(getContext(), response.body());
+                    SharedPreferencesManager.setIsStudentValue(getContext(), true);
+                    getActivity().finish();
+
+
+                } else if (response.raw().code() == 400) {
+                    password.setError("Incorrect password");
+                } else {
+                    username.setError("User doesn't exist");
+                }
+
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Log.d("LOGIN_FRAGMENT", call.toString());
+                t.printStackTrace();
+            }
+        });
+    }
 }

@@ -1,6 +1,5 @@
 package com.laureanray.codesimulatorandchecker.ui.root;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,12 +20,13 @@ import android.widget.EditText;
 import com.google.android.material.snackbar.Snackbar;
 import com.laureanray.codesimulatorandchecker.MainActivity;
 import com.laureanray.codesimulatorandchecker.R;
-import com.laureanray.codesimulatorandchecker.app.RetrofitClientInstance;
 import com.laureanray.codesimulatorandchecker.app.SharedPreferencesManager;
 import com.laureanray.codesimulatorandchecker.app.Util;
 import com.laureanray.codesimulatorandchecker.data.model.Login;
 import com.laureanray.codesimulatorandchecker.data.model.Student;
+import com.laureanray.codesimulatorandchecker.data.model.Token;
 import com.laureanray.codesimulatorandchecker.data.services.StudentService;
+import com.laureanray.codesimulatorandchecker.data.services.TokenService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +34,7 @@ import retrofit2.Response;
 
 public class LoginFragment extends Fragment {
 
-    private StudentService studentService;
+    private TokenService tokenService;
     private TextWatcher loginTextWatcher;
     private Button loginButton;
     private EditText username;
@@ -50,7 +50,8 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        studentService = RetrofitClientInstance.getRetrofitInstance().create(StudentService.class);
+        initStudentService();
+
 
         loginTextWatcher = new TextWatcher() {
             @Override
@@ -74,6 +75,12 @@ public class LoginFragment extends Fragment {
         };
 
         super.onCreate(savedInstanceState);
+    }
+
+    private void initStudentService() {
+
+
+
     }
 
     @Override
@@ -101,7 +108,7 @@ public class LoginFragment extends Fragment {
 
         Util.hideKeyboard(getActivity());
 
-        Login login = new Login(username.getText().toString(), password.getText().toString());
+        Login login = new Login(username.getText().toString(), password.getText().toString(), "password");
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Logging you in...");
@@ -123,10 +130,10 @@ public class LoginFragment extends Fragment {
 
         progressDialogHandler.postDelayed(progressRunnable, 3000);
 
-        Call<Student> call = studentService.login(login);
-        call.enqueue(new Callback<Student>() {
+        Call<Token> call = tokenService.getToken(login);
+        call.enqueue(new Callback<Token>() {
             @Override
-            public void onResponse(Call<Student> call, Response<Student> response) {
+            public void onResponse(Call<Token> call, Response<Token> response) {
                 Log.d("LOGIN_FRAGMENT", response.message());
 
                 if (response.raw().code() == 200) {
@@ -137,8 +144,8 @@ public class LoginFragment extends Fragment {
 
                     // Set the login value
                     SharedPreferencesManager.setIsLoggedInValue(getContext(), true);
-                    SharedPreferencesManager.setStudentValue(getContext(), response.body());
-                    SharedPreferencesManager.setIsStudentValue(getContext(), true);
+                    SharedPreferencesManager.setTokenValue(getContext(), response.body().getAccessToken());
+                    SharedPreferencesManager.setIsTokenValue(getContext(), true);
                     getActivity().finish();
 
 
@@ -152,7 +159,7 @@ public class LoginFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Student> call, Throwable t) {
+            public void onFailure(Call<Token> call, Throwable t) {
                 Log.d("LOGIN_FRAGMENT", call.toString());
                 t.printStackTrace();
             }

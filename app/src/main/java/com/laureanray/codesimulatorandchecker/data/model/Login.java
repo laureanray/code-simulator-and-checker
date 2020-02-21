@@ -3,10 +3,20 @@ package com.laureanray.codesimulatorandchecker.data.model;
 public class Login {
     private String username;
     private String password;
+    private String grantType;
 
-    public Login(String username, String password) {
+    public String getGrantType() {
+        return grantType;
+    }
+
+    public void setGrantType(String grantType) {
+        this.grantType = grantType;
+    }
+
+    public Login(String username, String password, String grantType) {
         this.username = username;
         this.password = password;
+        this.grantType = grantType;
     }
 
     public String getUsername() {

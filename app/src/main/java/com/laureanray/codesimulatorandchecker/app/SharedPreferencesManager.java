@@ -15,6 +15,7 @@ public class SharedPreferencesManager {
     private static final String IS_STUDENT = "IS_STUDENT";
     private static final String STUDENT = "STUDENT";
     private static final String INSTRUCTOR = "INSTRUCTOR";
+    private static final String TOKEN = "TOKEN";
     // other properties...
 
 
@@ -53,6 +54,16 @@ public class SharedPreferencesManager {
     public static void setIsStudentValue(Context context, boolean isStudent) {
         final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.putBoolean(IS_STUDENT, isStudent);
+        editor.commit();
+    }
+
+    public static String getTokenValue(Context context) {
+        return getSharedPreferences(context).getString(TOKEN, null);
+    }
+
+    public static void setTokenValue(Context context, String token) {
+        final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(TOKEN, token);
         editor.commit();
     }
 

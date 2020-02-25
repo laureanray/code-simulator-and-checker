@@ -1,8 +1,13 @@
 package com.laureanray.codesimulatorandchecker.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Token {
+    @SerializedName("access_token")
     private String accessToken;
+    @SerializedName("token_type")
     private String tokenType;
+    @SerializedName("expires_in")
     private long expiresIn;
     private String scope;
     private String jti;

@@ -38,14 +38,17 @@
 
     <EditText
         android:id="@+id/source_code"
+        style="@style/CodeEditor"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="@string/placeholder"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView14"
@@ -56,10 +59,10 @@
         style="@style/FontHeadingSm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/result"
-        app:layout_constraintStart_toStartOf="@+id/source_code"
-        app:layout_constraintTop_toBottomOf="@+id/source_code" />
+        app:layout_constraintBottom_toTopOf="@+id/result"
+        app:layout_constraintStart_toStartOf="@+id/source_code" />
 
     <Button
         android:id="@+id/play_run_btn"
@@ -74,15 +77,17 @@
 
     <EditText
         android:id="@+id/result"
+        style="@style/CodeEditor"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:editable="false"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/source_code"
-        app:layout_constraintStart_toStartOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintStart_toStartOf="@+id/textView15" />
 
     <TextView
         android:id="@+id/compile_result"
@@ -92,4 +97,16 @@
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toTopOf="@+id/textView15" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/BtnLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/load_from_file"
+        app:layout_constraintEnd_toStartOf="@+id/play_run_btn"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

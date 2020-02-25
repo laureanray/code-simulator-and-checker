@@ -63,10 +63,12 @@ public class RootActivity extends AppCompatActivity {
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.root_activity, fragment)
-                .addToBackStack(null)
-                .commit();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+          .replace(R.id.root_activity, fragment)
+          .addToBackStack(null)
+          .commit();
     }
 
 }

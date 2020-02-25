@@ -20,15 +20,17 @@ import android.widget.EditText;
 import com.google.android.material.snackbar.Snackbar;
 import com.laureanray.codesimulatorandchecker.MainActivity;
 import com.laureanray.codesimulatorandchecker.R;
+import com.laureanray.codesimulatorandchecker.app.OkHttpClientInstance;
+import com.laureanray.codesimulatorandchecker.app.RetrofitAuthClientInstance;
 import com.laureanray.codesimulatorandchecker.app.RetrofitClientInstance;
 import com.laureanray.codesimulatorandchecker.app.SharedPreferencesManager;
 import com.laureanray.codesimulatorandchecker.app.Util;
-import com.laureanray.codesimulatorandchecker.data.model.Login;
 import com.laureanray.codesimulatorandchecker.data.model.Student;
 import com.laureanray.codesimulatorandchecker.data.model.Token;
 import com.laureanray.codesimulatorandchecker.data.services.StudentService;
 import com.laureanray.codesimulatorandchecker.data.services.TokenService;
 
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -83,11 +85,11 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View root =  inflater.inflate(R.layout.login_fragment, container, false);
 
-        loginButton = root.findViewById(R.id.login_btn);
+        loginButton = root.findViewById(R.id.register_btn);
         loginButton.setEnabled(false);
 
         username = root.findViewById(R.id.et_r_un);
-        password = root.findViewById(R.id.et_password);
+        password = root.findViewById(R.id.et_r_cpassword);
 
         username.addTextChangedListener(loginTextWatcher);
         password.addTextChangedListener(loginTextWatcher);
@@ -99,9 +101,11 @@ public class LoginFragment extends Fragment {
 
     private void onLoginClicked(View view) {
         // Hide keyboard
-
         Util.hideKeyboard(getActivity());
 
+        // Clear errors if any
+        username.setError(null);
+        password.setError(null);
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Logging you in...");
@@ -127,6 +131,7 @@ public class LoginFragment extends Fragment {
                                                  password.getText().toString(),
                                                  "password");
 
+        Request request = call.request();
         call.enqueue(new Callback<Token>() {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
@@ -134,20 +139,17 @@ public class LoginFragment extends Fragment {
                 progressDialogHandler.removeCallbacks(progressRunnable);
 
                 if (response.raw().code() == 200) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
 
 
                     // Set the login value
-                    SharedPreferencesManager.setIsLoggedInValue(getContext(), true);
-                    SharedPreferencesManager.setTokenValue(getContext(), response.body().getAccessToken());
-                    getActivity().finish();
-
+                    assert response.body() != null;
+                    getStudentDetails(username.getText().toString(), response.body().getAccessToken());
 
                 } else if (response.raw().code() == 400) {
                     Snackbar.make(view, R.string.invalid_credentials, Snackbar.LENGTH_LONG).show();
                     password.setError("Incorrect password");
                 } else {
+
                     Snackbar.make(view, R.string.invalid_credentials, Snackbar.LENGTH_LONG).show();
                     username.setError("User doesn't exist");
                 }
@@ -161,5 +163,35 @@ public class LoginFragment extends Fragment {
                 t.printStackTrace();
             }
         });
+    }
+
+    private void getStudentDetails(String username, String token) {
+        StudentService studentService = RetrofitAuthClientInstance.getRetrofitInstance(OkHttpClientInstance.getOkHttpClientInstance(token))
+                .create(StudentService.class);
+        Call<Student> student = studentService.getUserByUsername(username);
+
+        student.enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if(response.raw().code() == 200){
+                    Student student = response.body();
+                    SharedPreferencesManager.setIsLoggedInValue(getContext(), true);
+                    SharedPreferencesManager.setTokenValue(getContext(), token);
+                    SharedPreferencesManager.setStudentValue(getContext(), student);
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                } else {
+                    Log.d("Status", String.valueOf(response.raw().code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Log.d("LOGIN_FRAGMENT", call.toString());
+                t.printStackTrace();
+            }
+        });
+
     }
 }

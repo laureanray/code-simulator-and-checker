@@ -3,18 +3,18 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_enabled="false"
-        android:drawable="@drawable/btn_primary_disabled" />
+        android:drawable="@drawable/btn_link_disabled" />
     <item
         android:state_pressed="true"
         android:state_enabled="true"
-        android:drawable="@drawable/btn_primary_pressed">
+        android:drawable="@drawable/btn_link_pressed">
     </item>
     <item
         android:state_focused="true"
         android:state_enabled="true"
-        android:drawable="@drawable/btn_primary_focused" />
+        android:drawable="@drawable/btn_link_focused" />
     <item
         android:state_enabled="true"
-        android:drawable="@drawable/btn_primary_enabled">
+        android:drawable="@drawable/btn_link_enabled">
     </item>
 </selector>

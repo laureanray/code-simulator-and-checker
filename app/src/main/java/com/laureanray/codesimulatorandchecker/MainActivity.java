@@ -24,14 +24,12 @@ public class MainActivity extends AppCompatActivity  {
         // Get student object from sharedpref
         Log.d(getLocalClassName(),"onCreate");
 
-        if(SharedPreferencesManager.getIsLoggedInValue(getApplicationContext())) {
+        if(SharedPreferencesManager.getIsLoggedInValue(getApplicationContext())
+           ) {
+            // Refresh user information here.
+            student = SharedPreferencesManager.getStudentValue(getApplicationContext());
+
             setContentView(R.layout.activity_main);
-
-
-            if(SharedPreferencesManager.getIsStudentValue(getApplicationContext())){
-                // if student then get the student object
-                student = SharedPreferencesManager.getStudentValue(getApplicationContext());
-            }
 
             // Navigation
             BottomNavigationView navView = findViewById(R.id.nav_view);

@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 
 public interface TokenService {
     @Headers("Authorization: Basic QU5EUk9JRF9DTElFTlQ6U0VDUkVU")
-    @POST("/api/v1/oauth/token")
+    @POST("/oauth/token")
     @FormUrlEncoded
     Call<Token> getToken(@Field("username") String username,
                          @Field("password") String password,

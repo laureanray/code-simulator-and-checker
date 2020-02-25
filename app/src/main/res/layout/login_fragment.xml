@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_r_cpassword"
         style="@style/TextInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -60,13 +60,13 @@
         app:layout_constraintTop_toBottomOf="@+id/et_r_un" />
 
     <Button
-        android:id="@+id/login_btn"
+        android:id="@+id/register_btn"
         style="@style/BtnPrimary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/action_sign_in"
-        app:layout_constraintEnd_toEndOf="@+id/et_password"
-        app:layout_constraintStart_toStartOf="@+id/et_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        app:layout_constraintEnd_toEndOf="@+id/et_r_cpassword"
+        app:layout_constraintStart_toStartOf="@+id/et_r_cpassword"
+        app:layout_constraintTop_toBottomOf="@+id/et_r_cpassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>

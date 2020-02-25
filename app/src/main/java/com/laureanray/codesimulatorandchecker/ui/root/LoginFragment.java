@@ -20,6 +20,7 @@ import android.widget.EditText;
 import com.google.android.material.snackbar.Snackbar;
 import com.laureanray.codesimulatorandchecker.MainActivity;
 import com.laureanray.codesimulatorandchecker.R;
+import com.laureanray.codesimulatorandchecker.app.RetrofitClientInstance;
 import com.laureanray.codesimulatorandchecker.app.SharedPreferencesManager;
 import com.laureanray.codesimulatorandchecker.app.Util;
 import com.laureanray.codesimulatorandchecker.data.model.Login;
@@ -50,8 +51,7 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        initStudentService();
-
+        tokenService = RetrofitClientInstance.getRetrofitInstance().create(TokenService.class);
 
         loginTextWatcher = new TextWatcher() {
             @Override
@@ -75,12 +75,6 @@ public class LoginFragment extends Fragment {
         };
 
         super.onCreate(savedInstanceState);
-    }
-
-    private void initStudentService() {
-
-
-
     }
 
     @Override
@@ -108,7 +102,6 @@ public class LoginFragment extends Fragment {
 
         Util.hideKeyboard(getActivity());
 
-        Login login = new Login(username.getText().toString(), password.getText().toString(), "password");
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Logging you in...");
@@ -130,28 +123,32 @@ public class LoginFragment extends Fragment {
 
         progressDialogHandler.postDelayed(progressRunnable, 3000);
 
-        Call<Token> call = tokenService.getToken(login);
+        Call<Token> call = tokenService.getToken(username.getText().toString(),
+                                                 password.getText().toString(),
+                                                 "password");
+
         call.enqueue(new Callback<Token>() {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
                 Log.d("LOGIN_FRAGMENT", response.message());
+                progressDialogHandler.removeCallbacks(progressRunnable);
 
                 if (response.raw().code() == 200) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
 
-                    progressDialogHandler.removeCallbacks(progressRunnable);
 
                     // Set the login value
                     SharedPreferencesManager.setIsLoggedInValue(getContext(), true);
                     SharedPreferencesManager.setTokenValue(getContext(), response.body().getAccessToken());
-                    SharedPreferencesManager.setIsTokenValue(getContext(), true);
                     getActivity().finish();
 
 
                 } else if (response.raw().code() == 400) {
+                    Snackbar.make(view, R.string.invalid_credentials, Snackbar.LENGTH_LONG).show();
                     password.setError("Incorrect password");
                 } else {
+                    Snackbar.make(view, R.string.invalid_credentials, Snackbar.LENGTH_LONG).show();
                     username.setError("User doesn't exist");
                 }
 

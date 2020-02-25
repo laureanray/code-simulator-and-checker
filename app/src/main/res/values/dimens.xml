@@ -7,14 +7,24 @@
     <dimen name="padding_right">12dp</dimen>
     <dimen name="padding_bottom">12dp</dimen>
     <dimen name="padding_top">12dp</dimen>
+
+    <dimen name="padding_left_link"> 1dp </dimen>
+    <dimen name="padding_right_link"> 1dp </dimen>
+    <dimen name="padding_bottom_link"> 1dp </dimen>
+    <dimen name="padding_top_link"> 1dp </dimen>
+
+
     <dimen name="edit_text_fs">18sp</dimen>
+    <dimen name="edit_text_code">16sp</dimen>
     <dimen name="button_fs">15sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="avatar_dimen"> 90dp </dimen>
-    <dimen name="courses_height"> 125dp </dimen>
-    <dimen name="courses_thumb_height"> 120dp </dimen>
+    <dimen name="courses_height"> 155dp </dimen>
+    <dimen name="courses_thumb_height"> 150dp </dimen>
     <dimen name="courses_thumb_width"> 100dp </dimen>
-    <dimen name="icons"> 60dp </dimen>
+    <dimen name="icons"> 62dp </dimen>
     <dimen name="icon_radius"> 40dp </dimen>
     <dimen name="icon_text_width"> 70dp </dimen>
+
+    <dimen name="lg_icon"> 120dp </dimen>
 </resources>

@@ -14,5 +14,5 @@
     <color name="dangerDisabled">#F06A81</color>
     <color name="whiteDisabled">#D3D3D3</color>
     <color name="dirtyWhite"> #e7e7e7 </color>
-
+    <color name="transparent">#00FFFFFF</color>
 </resources>

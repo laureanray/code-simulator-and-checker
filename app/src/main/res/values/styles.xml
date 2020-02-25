@@ -79,6 +79,13 @@
         <item name="android:textSize">@dimen/button_fs</item>
     </style>
 
+    <style name="BtnLink">
+        <item name="android:background">@drawable/btn_link</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/button_fs</item>
+    </style>
+
     <style name="TextInput">
         <item name="android:textSize">@dimen/edit_text_fs</item>
         <item name="android:background">@drawable/edit_text</item>
@@ -88,9 +95,18 @@
         <item name="android:textColorHint"> @color/grayLightest </item>
     </style>
 
+    <style name="CodeEditor">
+        <item name="android:textSize">@dimen/edit_text_code</item>
+        <item name="android:background">@drawable/edit_text</item>
+        <item name="android:padding">@dimen/padding_top</item>
+        <item name="android:fontFamily">@font/mono_regular</item>
+        <item name="android:textColor">@color/grayDark</item>
+        <item name="android:textColorHint"> @color/grayLightest </item>
+    </style>
+
 
     <style name="CourseThumb">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/medium</item>
         <item name="android:textColor">@color/grayDark</item>
         <item name="android:textAlignment">textStart</item>
